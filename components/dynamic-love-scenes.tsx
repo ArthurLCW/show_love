@@ -294,6 +294,7 @@ export function DynamicLoveScenesComponent() {
     return null;
   }
 
+  console.log(isNextPage, isAudioPlaying, isAudioFinish, isMobile);
   return (
     <div
       className={`relative w-full min-h-screen overflow-hidden bg-gradient-to-br ${scenes[currentScene].background}`}
@@ -308,58 +309,63 @@ export function DynamicLoveScenesComponent() {
       )}
 
       <div className="absolute inset-0 flex flex-col items-center justify-center p-4">
-        {/* <Hearts /> */}
-        <motion.div
-          key={currentScene}
-          initial={{ scale: 0, rotate: -180 }}
-          animate={{ scale: 1, rotate: 0 }}
-          exit={{ scale: 0, rotate: 180 }}
-          transition={{
-            type: "spring",
-            stiffness: 260,
-            damping: 20,
-          }}
-          className="w-64 h-64 mb-8"
-        >
-          {scenes[currentScene].icon}
-        </motion.div>
+        {isNextPage ? (
+          <Hearts />
+        ) : (
+          <>
+            <motion.div
+              key={currentScene}
+              initial={{ scale: 0, rotate: -180 }}
+              animate={{ scale: 1, rotate: 0 }}
+              exit={{ scale: 0, rotate: 180 }}
+              transition={{
+                type: "spring",
+                stiffness: 260,
+                damping: 20,
+              }}
+              className="w-64 h-64 mb-8"
+            >
+              {scenes[currentScene].icon}
+            </motion.div>
 
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentScene}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -50 }}
-            transition={{ duration: 0.5 }}
-            className="text-3xl md:text-4xl font-bold mb-8 text-center text-gray-800"
-          >
-            {loveMessages[currentScene % loveMessages.length]}
-          </motion.div>
-        </AnimatePresence>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentScene}
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -50 }}
+                transition={{ duration: 0.5 }}
+                className="text-3xl md:text-4xl font-bold mb-8 text-center text-gray-800"
+              >
+                {loveMessages[currentScene % loveMessages.length]}
+              </motion.div>
+            </AnimatePresence>
 
-        <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          className="px-6 py-3 bg-white text-pink-500 rounded-full font-semibold text-lg shadow-lg flex items-center space-x-2"
-          onClick={toggleAudio}
-        >
-          {isAudioFinish && !isMobile ? (
-            <>
-              <ArrowRightCircle />
-              <span>继续甜蜜生活</span>
-            </>
-          ) : isAudioPlaying ? (
-            <>
-              <PauseCircle />
-              <span>暂停音乐播放</span>
-            </>
-          ) : (
-            <>
-              <PlayCircle />
-              <span>开启幸福之旅</span>
-            </>
-          )}
-        </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="px-6 py-3 bg-white text-pink-500 rounded-full font-semibold text-lg shadow-lg flex items-center space-x-2"
+              onClick={toggleAudio}
+            >
+              {isAudioFinish && !isMobile ? (
+                <>
+                  <ArrowRightCircle />
+                  <span>继续甜蜜生活</span>
+                </>
+              ) : isAudioPlaying ? (
+                <>
+                  <PauseCircle />
+                  <span>暂停音乐播放</span>
+                </>
+              ) : (
+                <>
+                  <PlayCircle />
+                  <span>开启幸福之旅</span>
+                </>
+              )}
+            </motion.button>
+          </>
+        )}
       </div>
     </div>
   );
