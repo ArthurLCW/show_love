@@ -395,7 +395,7 @@ export function DynamicLoveScenesComponent() {
       )}
 
       <div className="absolute inset-0 flex flex-col items-center justify-center p-4">
-        {isNextPage ? (
+        {true ? (
           <Hearts />
         ) : (
           <>
