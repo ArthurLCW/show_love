@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import HeartIcon from "../../HeartIcon";
 
 export const contentType = "image/svg+xml";
-export const size = {
+const size = {
   width: 24,
   height: 24,
 };
