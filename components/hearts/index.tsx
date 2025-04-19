@@ -4,28 +4,75 @@ import { useState, useRef } from "react";
 import styles from "./App.module.css";
 
 const images: string[] = [
-  "/imgs/1744990696920.jpg",
-  "/imgs/1744990696952.jpg",
-  "/imgs/1744990696955.jpg",
-  "/imgs/1744990696957.jpg",
-  "/imgs/1744990696959 (2).jpg",
-  "/imgs/1744990696961.jpg",
-  "/imgs/1744990696962.jpg",
-  "/imgs/mmexport1736267526280.jpg",
-  "/imgs/mmexport1742396923824.jpg",
-  "/imgs/mmexport1742396936155.jpg",
-  "/imgs/mmexport1742396940786.jpg",
-  "/imgs/mmexport1742396964409.jpg",
-  "/imgs/mmexport1742396971090.jpg",
-  "/imgs/mmexport1742396975323.jpg",
-  "/imgs/mmexport1742396982721.jpg",
-  "/imgs/mmexport1742397025251.jpg",
-  "/imgs/mmexport1742397036258.jpg",
-  "/imgs/mmexport1742397042310.jpg",
-  "/imgs/mmexport1742397048557.jpg",
-  "/imgs/mmexport1742397058985.jpg",
-  "/imgs/mmexport1742397081108.jpg",
-  "/imgs/mmexport1742397085874.jpg",
+  "1744990696920.jpg",
+  "1744990696952.jpg",
+  "1744990696955.jpg",
+  "1744990696957.jpg",
+  "1744990696959 (2).jpg",
+  "1744990696961.jpg",
+  "1744990696962.jpg",
+  "mmexport1736267526280.jpg",
+  "mmexport1742396923824.jpg",
+  "mmexport1742396936155.jpg",
+  "mmexport1742396940786.jpg",
+  "mmexport1742396964409.jpg",
+  "mmexport1742396971090.jpg",
+  "mmexport1742396975323.jpg",
+  "mmexport1742396982721.jpg",
+  "mmexport1742397025251.jpg",
+  "mmexport1742397036258.jpg",
+  "mmexport1742397042310.jpg",
+  "mmexport1742397048557.jpg",
+  "mmexport1742397058985.jpg",
+  "mmexport1742397081108.jpg",
+  "mmexport1742397085874.jpg",
+];
+
+const smImages: string[] = [
+  "sm1744990696920.jpg",
+  "sm1744990696952.jpg",
+  "sm1744990696955.jpg",
+  "sm1744990696957.jpg",
+  "sm1744990696959 (2).jpg",
+  "sm1744990696961.jpg",
+  "sm1744990696962.jpg",
+  "smmmexport1736267526280.jpg",
+  "smmmexport1742396923824.jpg",
+  "smmmexport1742396936155.jpg",
+  "smmmexport1742396940786.jpg",
+  "smmmexport1742396964409.jpg",
+  "smmmexport1742396971090.jpg",
+  "smmmexport1742396975323.jpg",
+  "smmmexport1742396982721.jpg",
+  "smmmexport1742397025251.jpg",
+  "smmmexport1742397036258.jpg",
+  "smmmexport1742397042310.jpg",
+  "smmmexport1742397048557.jpg",
+  "smmmexport1742397058985.jpg",
+  "smmmexport1742397081108.jpg",
+  "smmmexport1742397085874.jpg",
+  "smsm1744990696920.jpg",
+  "smsm1744990696952.jpg",
+  "smsm1744990696955.jpg",
+  "smsm1744990696957.jpg",
+  "smsm1744990696959 (2).jpg",
+  "smsm1744990696961.jpg",
+  "smsm1744990696962.jpg",
+  "smsmmmexport1736267526280.jpg",
+  "smsmmmexport1742396923824.jpg",
+  "smsmmmexport1742396936155.jpg",
+  "smsmmmexport1742396940786.jpg",
+  "smsmmmexport1742396964409.jpg",
+  "smsmmmexport1742396971090.jpg",
+  "smsmmmexport1742396975323.jpg",
+  "smsmmmexport1742396982721.jpg",
+  "smsmmmexport1742397025251.jpg",
+  "smsmmmexport1742397036258.jpg",
+  "smsmmmexport1742397042310.jpg",
+  "smsmmmexport1742397048557.jpg",
+  "smsmmmexport1742397058985.jpg",
+  "smsmmmexport1742397081108.jpg",
+  "smsmmmexport1742397085874.jpg",
 ];
 
 // 简化的爱心形状坐标
@@ -59,10 +106,6 @@ const startDate = new Date("2023-03-17");
 const currentDate = new Date();
 const timeDifference = currentDate.getTime() - startDate.getTime();
 const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-const years = Math.floor(daysDifference / 365);
-const remainingDays = daysDifference % 365;
-const months = Math.floor(remainingDays / 30);
-const days = remainingDays % 30;
 
 const getWidthHeight = (id: number) => {
   const img = document.getElementById(id + "") as HTMLImageElement;
@@ -116,13 +159,12 @@ const HomePage: React.FC = () => {
       {heartCoordinates.map(([x, y], index) => (
         <img
           onClick={() => {
-            // setModalUrl(images[0]);
             setShowedImg(index);
             openModal();
           }}
           key={index}
           id={index + ""}
-          src={images[index]}
+          src={`\\imgs\\sm\\${smImages[index]}`}
           alt={`Heart Image ${index + 1}`}
           className={styles.heartImage}
           style={{
@@ -136,9 +178,7 @@ const HomePage: React.FC = () => {
       <div className={styles.heartText}>
         <p>亲爱的</p>
         <p>我们已经相恋</p>
-        <p>
-          {years} 年 {months} 月 {days} 天啦
-        </p>
+        <p>{daysDifference} 天啦</p>
       </div>
       <Modal
         isOpen={isModalOpen}
@@ -155,7 +195,7 @@ const HomePage: React.FC = () => {
       >
         <img
           style={{ width: "100%", height: "100%" }}
-          src={images[showedImg]}
+          src={`\\imgs\\${images[showedImg]}`}
           alt="Original Image"
           ref={imgRef}
         />
