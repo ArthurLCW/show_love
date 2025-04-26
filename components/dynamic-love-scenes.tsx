@@ -453,6 +453,28 @@ export function DynamicLoveScenesComponent() {
           </>
         )}
       </div>
+      <div
+        style={{
+          position: "fixed",
+          bottom: "0px",
+          height: "40px",
+          // color: "white
+          backgroundColor: "white",
+          width: "100vw",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <a
+          href="https://beian.miit.gov.cn"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: "blue", textDecoration: "underline" }}
+        >
+          粤ICP备2025371442号-2
+        </a>
+      </div>
     </div>
   );
 }
