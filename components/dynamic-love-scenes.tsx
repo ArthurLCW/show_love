@@ -33,98 +33,7 @@ import {
   Calendar,
 } from "lucide-react";
 import Hearts from "./hearts";
-// const scenes = [
-//   {
-//     icon: <Gift className="w-full h-full text-red-400" />,
-//     background: "from-red-100 to-pink-200",
-//     msg: "你是上天赐予我最美好的礼物",
-//   },
-//   {
-//     icon: <Umbrella className="w-full h-full text-purple-500" />,
-//     background: "from-purple-200 to-pink-200",
-//   },
 
-//   {
-//     icon: <Heart className="w-full h-full text-red-500" />,
-//     background: "from-pink-200 to-red-200",
-//   },
-//   {
-//     icon: <Star className="w-full h-full text-yellow-400" />,
-//     background: "from-indigo-200 to-purple-200",
-//   },
-//   {
-//     icon: <Sun className="w-full h-full text-yellow-500" />,
-//     background: "from-yellow-200 to-orange-200",
-//   },
-//   {
-//     icon: <Moon className="w-full h-full text-blue-400" />,
-//     background: "from-blue-200 to-indigo-200",
-//   },
-//   {
-//     icon: <Cloud className="w-full h-full text-gray-400" />,
-//     background: "from-blue-100 to-gray-200",
-//   },
-//   {
-//     icon: <Umbrella className="w-full h-full text-purple-500" />,
-//     background: "from-purple-200 to-pink-200",
-//   },
-//   {
-//     icon: <Music className="w-full h-full text-green-500" />,
-//     background: "from-green-200 to-teal-200",
-//   },
-//   {
-//     icon: <Cake className="w-full h-full text-pink-600" />,
-//     background: "from-pink-100 to-red-100",
-//   },
-//   {
-//     icon: <Leaf className="w-full h-full text-green-400" />,
-//     background: "from-green-100 to-emerald-200",
-//   },
-//   {
-//     icon: <Bird className="w-full h-full text-sky-400" />,
-//     background: "from-sky-100 to-blue-200",
-//   },
-//   {
-//     icon: <Palette className="w-full h-full text-violet-500" />,
-//     background: "from-violet-100 to-purple-200",
-//   },
-//   {
-//     icon: <Compass className="w-full h-full text-amber-600" />,
-//     background: "from-amber-100 to-yellow-200",
-//   },
-//   {
-//     icon: <Plane className="w-full h-full text-blue-500" />,
-//     background: "from-cyan-100 to-blue-200",
-//   },
-//   {
-//     icon: <Home className="w-full h-full text-orange-400" />,
-//     background: "from-orange-100 to-amber-200",
-//   },
-//   {
-//     icon: <Trees className="w-full h-full text-emerald-600" />,
-//     background: "from-emerald-100 to-green-200",
-//   },
-//   {
-//     icon: <Waves className="w-full h-full text-cyan-500" />,
-//     background: "from-cyan-100 to-sky-200",
-//   },
-//   {
-//     icon: <Snowflake className="w-full h-full text-blue-300" />,
-//     background: "from-blue-50 to-slate-200",
-//   },
-//   {
-//     icon: <Wind className="w-full h-full text-slate-400" />,
-//     background: "from-slate-100 to-gray-200",
-//   },
-//   {
-//     icon: <Sunset className="w-full h-full text-orange-500" />,
-//     background: "from-orange-200 to-rose-200",
-//   },
-//   {
-//     icon: <Infinity className="w-full h-full text-indigo-500" />,
-//     background: "from-indigo-100 to-violet-200",
-//   },
-// ];
 const scenes = [
   {
     icon: <Gift className="w-full h-full text-red-400" />,
@@ -306,21 +215,22 @@ export function DynamicLoveScenesComponent() {
     };
     audio.addEventListener("ended", handleAudioEnded);
 
-    audio.play().catch((error) => {
-      console.error("音频播放失败:", error);
-      setIsAudioPlaying(false);
-    });
+    // audio.play().catch((error) => {
+    //   console.error("音频播放失败:", error);
+    //   setIsAudioPlaying(false);
+    // });
 
     return () => {
       setClearTimeInterval();
       audio.pause();
       audio.src = "";
       audio.removeEventListener("ended", handleAudioEnded); // 移除事件监听器
-      console.log("lcw 1");
     };
   }, []);
 
   const toggleAudio = () => {
+    console.log("lcw audio 1");
+
     if (isAudioFinish && !isMobile) {
       setIsNextPage(true);
       return;
@@ -333,7 +243,7 @@ export function DynamicLoveScenesComponent() {
         setClearTimeInterval();
       } else {
         audioRef.current.play().catch((error) => {
-          console.error("音频放失败:", error);
+          console.error("音频播放失败:", error);
           setIsAudioPlaying(false);
         });
         setTimeInterval();
